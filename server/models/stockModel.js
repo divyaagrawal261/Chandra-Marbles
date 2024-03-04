@@ -14,7 +14,7 @@ const stockSchema=new mongoose.Schema({
         type: String,
         required: [true, "Please provide a size"]
     },
-    numberOfBoxes: {
+    quantity: {
         type:Number,
         default: 0
     },
