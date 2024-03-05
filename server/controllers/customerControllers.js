@@ -9,4 +9,22 @@ const getCustomer=expressAsyncHandler(async(req,res)=>{
     res.status(401).json({message:"Customer does not exist"});
 })
 
-export default getCustomer;
+const updateCustomer=expressAsyncHandler(async(req,res)=>{
+    const {Amount,phone}=req.body;
+    try{
+        if(!Amount || !phone)
+        throw new Error("All fields are neccessary");
+
+        const Customer=await customer.findOneAndUpdate({phone},{$inc:{balanceAmount:-Amount}}); 
+
+        if(!Customer)
+        throw new Error("Customer does not exist");
+
+        res.status(201).json(Customer);
+    }
+    catch(err)
+    {
+        res.status(400).json(err.message);
+    }
+})
+export  {getCustomer, updateCustomer};

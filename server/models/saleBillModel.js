@@ -8,7 +8,7 @@ const SaleBillSchema = new mongoose.Schema({
   products: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Product",
+      ref: "Stock",
     },
   ],
   totalAmount: {
