@@ -13,6 +13,14 @@ const employeeSchema=new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Please provide a password"]
+    },
+    saleTillDate:{
+        type:Number,
+        default:0
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false
     }
 })
 

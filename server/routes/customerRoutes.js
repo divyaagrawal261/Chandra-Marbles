@@ -3,6 +3,6 @@ import { getCustomer, updateCustomer } from "../controllers/customerControllers.
 const Router=express.Router();
 
 Router.post("/",getCustomer)
-      .delete("/update",updateCustomer)
+      .patch("/update",updateCustomer)
 
 export default Router;

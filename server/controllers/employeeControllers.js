@@ -54,6 +54,7 @@ const loginEmployee=expressAsyncHandler(async(req,res)=>{
             user:{
                 employeeName: employee.employeeName,
                 phone: employee.phone,
+                isAdmin:employee.isAdmin
             },
         },process.env.ACCESS_TOKEN_SECRET,
         {expiresIn:"360m"});
@@ -70,4 +71,26 @@ catch(err)
 
 })
 
-export {loginEmployee,registerEmployee,showEmployees,getEmployee};
+//Change the saleTillDate as per the comission paid to employee
+const updateEmployee=expressAsyncHandler(async(req,res)=>{
+    const{phone, amount}=req.body;
+    try{
+        if(!phone || !amount)
+        throw new Error("All fields are neccessary");
+
+        if(amount<0)
+        throw new Error("Amount should be positive");
+
+        const employee=await Employee.findOneAndUpdate({phone},{$inc:{saleTillDate:-amount}});
+
+        if(!employee)
+        throw new Error("Employee does not exist");
+
+        res.status(201).json(employee);
+    }
+    catch(err)
+    {
+        res.status(400).json(err.message);
+    }
+})
+export {loginEmployee,registerEmployee,showEmployees,getEmployee,updateEmployee};
