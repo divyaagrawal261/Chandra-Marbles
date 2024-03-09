@@ -6,6 +6,6 @@ const Router=express.Router();
 
 Router.use("/",validateToken)
 Router.post("/create",createReturn)
-      .delete("/delete",deleteReturnBill)
+      .delete("/delete/:id",deleteReturnBill)
 
 export default Router;

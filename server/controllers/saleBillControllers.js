@@ -7,8 +7,9 @@ import Employee from "../models/employeeModel.js";
 const createSale=expressAsyncHandler(async(req,res)=>
 {
     const Products=req.body.Products;
-    const {customerName, phone}=req.body;
+    const {customerName, phone, paid}=req.body;
     const employeePhone=req.user.phone;
+    const employeeName=req.user.employeeName;
     
     try{
         if(!employeePhone)
@@ -17,6 +18,9 @@ const createSale=expressAsyncHandler(async(req,res)=>
         if(!phone)
         throw new Error("Enter phone number of the Customer");
 
+        if(paid<0)
+        throw new Error("Amount paid cannot be negative");
+    
         var customer=await Customer.findOne({phone});
         if(!customer)
         {
@@ -35,11 +39,13 @@ const createSale=expressAsyncHandler(async(req,res)=>
             const id=((found._id).toString()).split(`'`)[0];
             products.push({product: id,barcode:barcode,orderedQuantity: element.quantity});
         };
+
+        const balance=Number(totalAmount)-Number(paid);
         
-        await Customer.findOneAndUpdate({phone}, {$inc:{balanceAmount:totalAmount}});
+        await Customer.findOneAndUpdate({phone}, {$inc:{balanceAmount:balance}});
         await Employee.findOneAndUpdate({phone:employeePhone},{$inc:{saleTillDate:totalAmount}});
 
-        let bill=await SaleBill.create({totalAmount, products});
+        let bill=await SaleBill.create({employeeName, phone, totalAmount, products, paid, balance});
         bill=await SaleBill.findById(bill.id).populate({path:"products.product",select:"-quantity"});
     
         res.status(200).json(bill);
@@ -52,11 +58,11 @@ const createSale=expressAsyncHandler(async(req,res)=>
 
 const deleteSaleBill=expressAsyncHandler(async(req,res)=>{
     const permission=req.user.isAdmin;
-    const _id=req.body;
+    const id=req.params.id;
     
     if(permission)
     {
-        const bill=await SaleBill.findByIdAndDelete({_id});
+        const bill=await SaleBill.findByIdAndDelete(id);
         res.status(200).json(bill);
     }
     else

@@ -5,6 +5,6 @@ import validateToken from "../middlewares/tokenHandler.js";
 
 Router.use("/",validateToken)
 Router.post("/create",createSale)
-      .delete("/delete",deleteSaleBill)
+      .delete("/delete/:id",deleteSaleBill)
 
 export default Router;

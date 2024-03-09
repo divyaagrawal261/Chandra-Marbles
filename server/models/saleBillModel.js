@@ -10,6 +10,12 @@ const productSchema = new mongoose.Schema({
 });
 
 const SaleBillSchema = new mongoose.Schema({
+  employeeName:{
+    type:String
+  },
+  phone:{
+    type:String
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -19,6 +25,13 @@ const SaleBillSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  paid:{
+    type:Number,
+    default:0
+  },
+  balance:{
+    type:Number
+  }
 });
 
 const SaleBill = mongoose.model("SaleBill", SaleBillSchema);

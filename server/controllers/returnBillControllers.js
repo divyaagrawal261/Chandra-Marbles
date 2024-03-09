@@ -33,11 +33,11 @@ const createReturn=expressAsyncHandler(async(req,res)=>
 
 const deleteReturnBill=expressAsyncHandler(async(req,res)=>{
     const permission=req.user.isAdmin;
-    const _id=req.body;
+    const id=req.params.id;
     
     if(permission)
     {
-    const bill=await ReturnBill.findByIdAndDelete({_id});
+    const bill=await ReturnBill.findByIdAndDelete(id);
     res.status(200).json(bill);
     }
     else

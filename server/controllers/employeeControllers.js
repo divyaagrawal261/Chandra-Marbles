@@ -17,6 +17,9 @@ const registerEmployee=expressAsyncHandler(async(req,res)=>{
     try{ 
     const hashedPassword=await bcrypt.hash(password,10);
 
+    if(await Employee.findOne({phone}))
+    throw new Error("Phone number already already exist");
+
     const employee= await Employee.create({employeeName, phone, password: hashedPassword});
 
     if(!employee)
