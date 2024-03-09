@@ -2,9 +2,9 @@ import Stock from "../models/stockModel.js";
 import ReturnBill from "../models/returnBillModel.js";
 import expressAsyncHandler from "express-async-handler";
 
-const newReturnBill=expressAsyncHandler(async(req,res)=>
+const createReturn=expressAsyncHandler(async(req,res)=>
 {
-    const Products=req.body;
+    const Products=req.body.Products;
     
     try{
         if(!Products)
@@ -12,17 +12,17 @@ const newReturnBill=expressAsyncHandler(async(req,res)=>
 
         var totalAmount=0;
         var products=[];
-        products.forEach(element => {
+        for(const element of Products){
             const barcode=element.barcode;
-            Stock.findOneAndUpdate({barcode},{$inc:{quantity:element.quantity}});
-            totalAmount=totalAmount+(element.quantity*element.rate);
-            products.push(element._id);
-        });
-    
+            const found=await Stock.findOneAndUpdate({barcode},{$inc:{quantity:element.quantity}});
+            totalAmount=totalAmount+(element.quantity*found.rate);
+            const id=((found._id).toString()).split(`'`)[0];
+            products.push({product: id,barcode:barcode,returnedQuantity: element.quantity});
+        };
         
         let bill=await ReturnBill.create({totalAmount, products});
-        bill=await ReturnBill.findById(bill.id).populate("products");
-
+        bill=await ReturnBill.findById(bill.id).populate({path:"products.product",select:"-quantity"});
+    
         res.status(200).json(bill);
     }
     catch(err)
@@ -38,4 +38,4 @@ const deleteReturnBill=expressAsyncHandler(async(req,res)=>{
     res.status(200).json(bill);
 })
 
-export {deleteReturnBill, newReturnBill};
+export {deleteReturnBill, createReturn};

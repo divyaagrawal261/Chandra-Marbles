@@ -18,7 +18,7 @@ app.use("/api/employee",employeeRoutes);
 app.use("/api/sale",salesRoutes);
 app.use("/api/customer",customerRoutes);
 app.use("/api/stock",stockRoutes);
-app.use("/api/retunr",returnRoutes);
+app.use("/api/return",returnRoutes);
 
 app.listen(port,()=>{
     console.log(`Server is listening on the port ${port}...`);

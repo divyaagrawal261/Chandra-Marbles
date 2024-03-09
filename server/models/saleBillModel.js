@@ -1,16 +1,20 @@
 import mongoose from "mongoose";
 
+const productSchema = new mongoose.Schema({
+  product: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Stock",
+  },
+  barcode:{type:String},
+  orderedQuantity: Number, 
+});
+
 const SaleBillSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
   },
-  products: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Stock",
-    },
-  ],
+  products: [productSchema],
   totalAmount: {
     type: Number,
     required: true,

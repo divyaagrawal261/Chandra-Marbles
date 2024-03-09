@@ -32,7 +32,8 @@ const registerEmployee=expressAsyncHandler(async(req,res)=>{
 
 //Details of Employee
 const getEmployee=expressAsyncHandler(async(req,res)=>{
-    const employee=await Employee.findOne({phone:req.user.phone})
+    const phone=req.user.phone;
+    const employee=await Employee.findOne({phone})
     res.status(200).json(employee);
 })
 
@@ -42,7 +43,7 @@ const loginEmployee=expressAsyncHandler(async(req,res)=>{
     const {phone, password}=req.body;
 
     try{
-    if(!email || !password)
+    if(!phone || !password)
     throw new Error("All field are mandatory");
 
     const employee = await Employee.findOne({phone});

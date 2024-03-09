@@ -1,5 +1,5 @@
 import express from "express";
-import { addStock, getProduct, allProducts} from "../controllers/stockControllers";
+import { addStock, getProduct, allProducts} from "../controllers/stockControllers.js";
 const Router=express.Router();
 
 Router.post("/create",addStock)
