@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image:url(../assets/LoginBG.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    text-transform: capitalize;
+}
+.customData:hover{
+    background-color: #5A0C1E;
+    color: #fff5e381;
+}
+.rowHead{
+    background-color: #5A0C1E;
+    color: #f3f3f3;
+    border-bottom: 3px solid black;
+}
+.rowData:nth-child(odd){
+    background-color: #ff48737c;
+    color: #1b1313;
+}
+.rowData:nth-child(even){
+    background-color: #66d4ff;
+    color: #201212;
+}

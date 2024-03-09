@@ -1,0 +1,88 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-color: rgb(252, 155, 155);
+    background-image: url(../assets/LoginBG.png);
+    background-size: cover;
+    background-position: 50% 50%;
+}
+.wrapper{
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;   
+    position: fixed; 
+    top: 60px;
+}
+.navbar{
+    background-color: rgba(17, 11, 13, 0.521) !important;
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    font-weight: 500;
+}
+.navbar button{
+    color: white;
+    border-color:white;
+}
+.navbar button:hover{
+    background-color: #5A0C1E;
+    border-color:white;
+}
+section{
+    height: 90vh;
+}
+.imgSection{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    padding:10px;
+}
+.imgSection img{
+    align-self: center;
+    justify-self: center;
+    max-height: 100%;
+    border-radius: 10px;
+}
+.brandLogo{
+    height: 200px;
+}
+.optionsSection{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    gap: 10px;
+    padding:10px;
+    align-items: center;
+    justify-content: center;
+}
+.optionsSection .container a{
+    min-width: 120px;
+    width: 50%;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    background-color: #0000006e !important;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    border-radius:5px ;
+}
+.optionsSection .container a:hover{
+    background-color: rgba(255, 255, 255, 0.459) !important;
+    color: black;
+    border:1px solid black;
+    cursor: pointer;
+}
