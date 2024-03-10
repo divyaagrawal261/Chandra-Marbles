@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    /* padding: 10px; */
+    flex-wrap: wrap;
+    background-image:url(../assets/LoginBG.png);
+    background-size: cover;
+    background-position: 50% 50%;
+}
+.leftSection{
+    min-width:60%;
+    background-image:url(../assets/LoginBG.jpg);
+    background-size: cover;
+    /* border-radius: 20px 0px 0px 20px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 800;
+    color: white;
+}
+.rightSection
+{
+    min-width: 40%;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+}
+.rightSection form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form div{
+    width: 100%;
+}
+button{
+    background-color: #5A0C1E;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+}
+button:hover{
+    box-sizing: border-box;
+    color: #5A0C1E;
+    padding: 9px;
+    background-color: white;
+    border: 1px solid #5A0C1E;
+}
+@media (max-width: 768px) {
+    .leftSection, .rightSection{
+        min-width: 50%;
+    }
+}
