@@ -1,7 +1,7 @@
-const apiURL="https://shortly-backend-8v8s.onrender.com";
+const apiURL="http://localhost:5001";
 
-const loginurl = `${apiURL}/api/users/login`;
-const getUserDetailsUrl = `${apiURL}/api/users/current`;
+const loginurl = `${apiURL}/api/employee/login`;
+const getUserDetailsUrl = `${apiURL}/api/employee/`;
 
 const loginBtn = document.getElementById("loginBtn");
 var accessToken;
@@ -17,7 +17,7 @@ const login = (event) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: loginEmail,
+        phone: loginEmail,
         password: loginPassword,
       }),
     })
@@ -33,7 +33,7 @@ const login = (event) => {
       .then((data) => {
         console.log(data);
         accessToken = data.accessToken;
-        setAccessTokenWithExpiry(accessToken, 15)
+        setAccessTokenWithExpiry(accessToken, 360)
         getUserDetails(accessToken);
       })
       .catch((err) => console.log(err));
@@ -51,10 +51,7 @@ const getUserDetails = (accessToken) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      window.location.href = "./public/dashBoard.html";
-    });
+    .then((data) => {  });
 };
 
 function setAccessTokenWithExpiry(accessToken, expiresInMinutes) {

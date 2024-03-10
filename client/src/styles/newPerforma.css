@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    height: 100vh;
+    background-color: rgb(252, 155, 155);
+    background-image: url(../assets/LoginBG.png);
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  .navbar {
+    background-color: rgba(17, 11, 13, 0.521) !important;
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    font-weight: 500;
+  }
+  .navbar button {
+    color: white;
+    border-color: white;
+  }
+  .navbar button:hover {
+    background-color: #5a0c1e;
+    border-color: white;
+  }
+  .rowHead{
+      font-size: 16px;
+      text-align: left;
+      background-color: black;
+      color: white;
+  }
+  .rowHead div{
+      padding: 10px;
+      border-width: 3px 1px 3px 0px;
+      border-style: solid;
+      border-color:rgb(177, 177, 177);
+  }
+  .rowHead div:last-child{
+      border-right: none;
+  }
+  .productRow,.inputRow{
+      background-color: #5a0c1e;
+      color: white;
+  border-bottom:1px solid white;
+  }
+  .productRow div:not(:last-child), .inputRow div:not(:last-child){
+      border-width: 0px 1px 0px 0px;
+      border-style: solid;
+      border-color:white;
+  }
+  .productRow:hover{
+      background-color: #5a0c1e42;
+      backdrop-filter: blur(5px);
+      color: black;
+      transition: 300ms;
+  }
+  .customerDetails{
+    display: flex;
+    margin: 3px 0px;
+    width: 100%;
+  }
+.customerDetails div input{
+    border: 1px solid black;
+}
+.customerDetails div{
+    margin: 3px;
+}
+button{
+  color: black;
+  background-color: white;
+  border: none;
+}
+.paymentDetails{
+  float: right;
+  width:200px;
+  margin: 5px;
+}
+.totalAmount, .balanceAmount{
+  background-color: white;
+  padding: 5px;
+  font-size: 16px;
+}
+.controlSection{
+  display: flex;
+  float: right;
+  gap: 10px;
+  flex-direction:column;
+}
+.controlSection button{
+  padding: 5px;
+  border-radius: 10px;
+}
+.controlSection button:hover{
+  background-color: black;
+  color: white;
+}

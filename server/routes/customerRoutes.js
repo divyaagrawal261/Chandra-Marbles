@@ -1,8 +1,8 @@
 import express from "express";
-import { getCustomer, updateCustomer } from "../controllers/customerControllers.js";
+import { getCustomers, updateCustomer, getCustomer } from "../controllers/customerControllers.js";
 const Router=express.Router();
-
-Router.get("/",getCustomer)
+Router.get("/:phone",getCustomer)
+Router.get("/",getCustomers)
       .patch("/update",updateCustomer)
 
 export default Router;

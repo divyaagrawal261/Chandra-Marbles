@@ -6,11 +6,12 @@ import stockRoutes from "./routes/stockRoutes.js";
 import salesRoutes from "./routes/saleRoutes.js";
 import returnRoutes from "./routes/returnBillRoutes.js";
 import employeeRoutes from "./routes/employeeRoutes.js";
+import cors from "cors";
 dotenv.config();
 
 connectDb();
 const app=express();
-
+app.use(cors());
 const port=process.env.PORT || 5001; 
 
 app.use(express.json());

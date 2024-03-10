@@ -48,13 +48,14 @@ a{
 }
 .pop-up{
     position: absolute;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(24, 21, 21);
     padding: 10px;
-    color: rgb(247, 7, 7);
+    color: rgb(255, 255, 255);
     border: 1px solid var(--container-color);
     margin: 5px;
     border-radius: 10px;
     display: none;
+    top: 10px;
 }
 .digiHands{
 position: absolute;
