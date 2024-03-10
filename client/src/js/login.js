@@ -33,8 +33,10 @@ const login = (event) => {
       .then((data) => {
         console.log(data);
         accessToken = data.accessToken;
-        setAccessTokenWithExpiry(accessToken, 360)
+        const isAdmin=data.employee.isAdmin;
+        setAccessTokenWithExpiry(accessToken,isAdmin, 360)
         getUserDetails(accessToken);
+        window.location.href=data.redirectUrl;
       })
       .catch((err) => console.log(err));
   } catch (err) {
@@ -54,12 +56,13 @@ const getUserDetails = (accessToken) => {
     .then((data) => {  });
 };
 
-function setAccessTokenWithExpiry(accessToken, expiresInMinutes) {
+function setAccessTokenWithExpiry(accessToken,isAdmin, expiresInMinutes) {
   const now = new Date();
   const expirationTime = now.getTime() + expiresInMinutes * 60 * 1000; 
   localStorage.setItem('accessToken', JSON.stringify({
     token: accessToken,
-    expiry: expirationTime
+    expiry: expirationTime,
+    isAdmin: isAdmin
   }));
 }
 

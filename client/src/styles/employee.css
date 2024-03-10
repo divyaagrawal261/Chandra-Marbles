@@ -1,36 +1,63 @@
-*{
+* {
     margin: 0;
     padding: 0;
-}
-body{
-    display: flex;
-    flex-direction: row;
+    box-sizing: border-box;
+  }
+  body {
     height: 100vh;
-    /* padding: 10px; */
-    flex-wrap: wrap;
-    background-image:url(../assets/LoginBG.png);
+    background-color: rgb(252, 155, 155);
+    background-image: url(../assets/LoginBG.png);
     background-size: cover;
     background-position: 50% 50%;
+  }
+.navbar {
+    background-color: rgba(17, 11, 13, 0.521) !important;
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    font-weight: 500;
+  }
+  .navbar button {
+    color: white;
+    border-color: white;
+  }
+  .navbar button:hover {
+    background-color: #5a0c1e;
+    border-color: white;
+  }
+section{
+    width: 100%;
+    height: inherit;
+}
+.container-fluid{
+    height: inherit;
+}
+.row{
+    height: inherit;
 }
 .leftSection{
-    min-width:60%;
     background-image:url(../assets/LoginBG.jpg);
+    background-attachment: fixed;
     background-size: cover;
-    /* border-radius: 20px 0px 0px 20px; */
+    background-position: 50% 50%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 40px;
     font-weight: 800;
-    color: white;
+    color: rgb(37, 18, 18);
+    height: inherit !important;
+}
+.leftSection p{
+    font-size: 20px;
 }
 .rightSection
 {
-    min-width: 40%;
     display: flex;
     flex-direction:row;
     justify-content: center;
     align-items: center;
+    height: inherit !important;
 }
 .rightSection form{
     display: flex;
@@ -55,8 +82,17 @@ button:hover{
     background-color: white;
     border: 1px solid #5A0C1E;
 }
-@media (max-width: 768px) {
-    .leftSection, .rightSection{
-        min-width: 50%;
+.scrollDown{
+    color: rgb(37, 18, 18);
+    position: absolute;
+    bottom: 10px;
+    left: 40vw;
+    font-size: 18px;
+    width: fit-content;
+    display: none;
+}
+@media (max-width:575px) {
+    .scrollDown{
+        display: block;
     }
 }

@@ -3,7 +3,11 @@ const inventoryUrl = `${apiURL}/api/stock/`;
 const saleUrl=`${apiURL}/api/return/create`;
 const customerUrl=`${apiURL}/api/customer/`;
 const storedToken = localStorage.getItem('accessToken');
-const token=JSON.parse(storedToken).token;
+if(!storedToken)
+window.location.href="../index.html"
+const isAdmin=JSON.parse(storedToken).isAdmin;
+if(!isAdmin)
+window.location.href="../public/error.html"
 
 
 function getProduct(){

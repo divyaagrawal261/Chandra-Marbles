@@ -62,7 +62,12 @@ const loginEmployee=expressAsyncHandler(async(req,res)=>{
         },process.env.ACCESS_TOKEN_SECRET,
         {expiresIn:"360m"});
         console.log("Signed in successfully");
-        res.status(200).json({Employee,accessToken});
+
+        if(employee.isAdmin)
+        res.status(200).json({employee,accessToken,redirectUrl:"./public/adminDash.html"});
+        else
+        res.status(200).json({employee,accessToken,redirectUrl:"./public/employeeDash.html"});
+
     }
     else
     throw new Error("Invalid Credentials");
