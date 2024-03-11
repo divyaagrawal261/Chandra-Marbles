@@ -1,4 +1,4 @@
-const apiURL = "http://localhost:5001";
+const apiURL = "https://chandra-marbles.onrender.com";
 const inventoryUrl = `${apiURL}/api/stock/`;
 const saleUrl=`${apiURL}/api/return/create`;
 const customerUrl=`${apiURL}/api/customer/`;

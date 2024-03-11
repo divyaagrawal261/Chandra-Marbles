@@ -1,4 +1,4 @@
-const apiURL="http://localhost:5001";
+const apiURL="https://chandra-marbles.onrender.com";
 
 const loginurl = `${apiURL}/api/employee/login`;
 const getUserDetailsUrl = `${apiURL}/api/employee/`;

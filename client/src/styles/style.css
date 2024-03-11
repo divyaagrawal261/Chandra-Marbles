@@ -37,6 +37,7 @@ form label{
 }
 form button{
     background-color: #5A0C1E !important;
+    z-index: 50;
     border: none !important;
 }
 form button:hover{
