@@ -6,7 +6,8 @@ const productSchema = new mongoose.Schema({
     ref: "Stock",
   },
   barcode:{type:String},
-  orderedQuantity: Number, 
+  orderedQuantity: Number,
+  rate:Number 
 });
 
 const SaleBillSchema = new mongoose.Schema({
@@ -14,7 +15,7 @@ const SaleBillSchema = new mongoose.Schema({
     type:String
   },
   phone:{
-    type:String
+    type:String //Customer Phone
   },
   date: {
     type: Date,
@@ -31,6 +32,9 @@ const SaleBillSchema = new mongoose.Schema({
   },
   balance:{
     type:Number
+  },
+  discount:{
+    type:Number //Discount Amount
   }
 });
 

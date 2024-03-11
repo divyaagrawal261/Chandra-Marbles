@@ -16,11 +16,9 @@ function add(event)
     const company=document.querySelector(".company").value;
     const size=document.querySelector(".size").value;
     const quantity=document.querySelector(".quantity").value;
-    const designName=document.querySelector(".designName").value;
     const quality=document.querySelector(".quality").value;
-    const rate=document.querySelector(".rate").value;
 
-    const requestBody=JSON.stringify({barcode, company, size, quantity, designName, quality, rate});
+    const requestBody=JSON.stringify({barcode, company, size, quantity, quality});
 
     fetch(StockUrl, {
         method:"POST",
@@ -32,10 +30,8 @@ function add(event)
      }).then((res)=>{
         if(res.ok)
         {document.querySelector(".pop-up").style.display="flex";
-        setTimeout(()=>{
-            document.querySelector(".pop-up").style.display="none";
-            window.location.reload();
-        },3000)}
+        setTimeout(()=>{document.querySelector(".pop-up").style.display="none";},3000)
+        setTimeout(()=>{window.location.reload()},3000)}
         return res.json();}).then(data=>console.log(data));
 }
 

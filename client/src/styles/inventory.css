@@ -32,7 +32,7 @@ body {
     color: white;
 }
 .rowHead div{
-    padding: 10px;
+    padding: 0px;
     border-width: 3px 1px 3px 0px;
     border-style: solid;
     border-color:rgb(177, 177, 177);
@@ -71,4 +71,7 @@ border-bottom:1px solid white;
   align-items: center;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.301);
+}
+.productRow div{
+  padding-left: 5px !important;
 }
