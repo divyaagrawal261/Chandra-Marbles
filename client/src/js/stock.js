@@ -29,9 +29,24 @@ function add(event)
             'Content-Type': 'application/json'
         },
         body:requestBody
-     }).then((res)=>res.json()).then(data=>console.log(data));
+     }).then((res)=>{
+        if(res.ok)
+        {document.querySelector(".pop-up").style.display="flex";
+        setTimeout(()=>{
+            document.querySelector(".pop-up").style.display="none";
+            window.location.reload();
+        },3000)}
+        return res.json();}).then(data=>console.log(data));
 }
 
 const createBtn=document.querySelector(".Btn");
 
 createBtn.addEventListener("click",add);
+
+const logOutBtn=document.querySelector(".btn-outline-success");
+
+logOutBtn.addEventListener("click",()=>{
+    localStorage.removeItem("accessToken");
+    console.log("Hello World")
+    window.location.href="../index.html";
+})

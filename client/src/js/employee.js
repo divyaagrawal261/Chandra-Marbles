@@ -6,6 +6,7 @@ if(!isAdmin)
 window.location.href="../public/error.html"
 const apiURL = "http://localhost:5001";
 const employeeURL= `${apiURL}/api/employee/register`;
+const token=JSON.parse(storedToken).token;
 
 function create(event)
 {
@@ -25,7 +26,18 @@ function create(event)
         'Content-Type': 'application/json'
     },
     body:requestBody
- }).then((res)=>res.json()).then(data=>console.log(data));
+ }).then((res)=>
+ {
+    if(res.ok)
+    {document.querySelector(".pop-up").style.display="flex";
+    setTimeout(()=>{
+        document.querySelector(".pop-up").style.display="none";
+        window.location.reload();
+    },3000)
+    
+    }
+    return res.json();
+ }).then(data=>console.log(data));
 }
 catch(err)
 {
@@ -35,3 +47,11 @@ catch(err)
 
 const Btn=document.querySelector(".Btn");
 Btn.addEventListener("click",create);
+
+const logOutBtn=document.querySelector(".btn-outline-success");
+
+logOutBtn.addEventListener("click",()=>{
+    localStorage.removeItem("accessToken");
+    console.log("Hello World")
+    window.location.href="../index.html";
+})

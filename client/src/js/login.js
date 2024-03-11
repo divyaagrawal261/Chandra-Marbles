@@ -7,6 +7,7 @@ const loginBtn = document.getElementById("loginBtn");
 var accessToken;
 
 const login = (event) => {
+  document.querySelector(".loader").style.display="flex";
   event.preventDefault();
   const loginEmail = document.getElementById("exampleInputEmail1").value;
   const loginPassword = document.getElementById("exampleInputPassword1").value;
@@ -26,6 +27,7 @@ const login = (event) => {
         if(response.ok) return response.json()
       else 
         {
+         document.querySelector(".loader").style.display="none";
          document.querySelector(".pop-up").style.display="flex";
          setTimeout(()=>document.querySelector(".pop-up").style.display="none",2000)
         }
@@ -39,8 +41,8 @@ const login = (event) => {
         window.location.href=data.redirectUrl;
       })
       .catch((err) => console.log(err));
-  } catch (err) {
-    console.log(err);
+    } catch (err) {
+      console.log(err);
   }
 };
 

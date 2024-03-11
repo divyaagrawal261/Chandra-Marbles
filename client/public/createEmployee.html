@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="../src/styles/employee.css">
 </head>
 <body>
+    <div class="pop-up">
+        <img src="../src/assets/check.gif" alt="" ><br>
+        <h2>Created Successfully</h2>
+    </div>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <a class="navbar-brand" href="adminDash.html">Chandra Marbles</a>
         <button
@@ -50,10 +54,12 @@
                                 <input type="password" class="form-control password" id="floatingInput3" placeholder="">
                             <label for="floatingInput">Password</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingInput4" placeholder="">
-                            <label for="floatingInput">Confirm Password</label>
-                            </div>
+                            <div class="form-check mx-auto">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onclick="check()">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Show Password
+                                </label>
+                              </div>
                             <button class="Btn">Hire</button>
                         </form>
                     </div>
@@ -63,6 +69,14 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../src/js/employee.js"></script>
+    <script>
+        function check(){
+        if(document.getElementById("flexCheckDefault").checked)
+        document.getElementById("floatingInput3").type="text";
+        else
+        document.getElementById("floatingInput3").type="password";
+        }
+    </script>
 </body>
 </html>
 

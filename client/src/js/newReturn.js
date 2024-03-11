@@ -9,6 +9,7 @@ const isAdmin=JSON.parse(storedToken).isAdmin;
 if(!isAdmin)
 window.location.href="../public/error.html"
 
+const token=JSON.parse(storedToken).token;
 
 function getProduct(){
   const quantity=document.querySelector(".quantity").value;
@@ -18,9 +19,14 @@ function getProduct(){
   if(totalAmount.innerHTML === "Amount")
   totalAmount.innerHTML="0";
 
+  if(!quantity || !barcode)
+  alert("All fields are neccessary")
+else{
   fetch(inventoryUrl+`${barcode}`)
   .then((res) => res.json())
   .then((element) => {
+    if(!element)
+    alert("Invalid Barcode")
     const container = document.querySelector(".productsContainer");
     const amount=(element.rate)*(quantity);
       const parent = document.createElement("div");
@@ -33,9 +39,10 @@ function getProduct(){
 
       container.append(parent);
       totalAmount.innerHTML=Number(totalAmount.innerHTML)+Number(amount);
-
+      document.querySelector(".quantity").value="";
+      document.querySelector(".barcode").value="";
   });
-}
+}}
 
 function deleteMe(element)
 {
@@ -77,6 +84,15 @@ function createPerforma()
   },
   body:requestBody
   }).then(res=>res.json()).then(data=>{
-    console.log(data)
-  });
+    document.querySelector(".pop-up").style.display="flex";
+    setTimeout(()=>document.querySelector(".pop-up").style.display="none",3000)
+    window.location.reload()});
 }
+
+const logOutBtn=document.querySelector(".btn-outline-success");
+
+logOutBtn.addEventListener("click",()=>{
+    localStorage.removeItem("accessToken");
+    console.log("Hello World")
+    window.location.href="../index.html";
+})

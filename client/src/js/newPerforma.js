@@ -3,6 +3,8 @@ const inventoryUrl = `${apiURL}/api/stock/`;
 const saleUrl=`${apiURL}/api/sale/create`;
 const customerUrl=`${apiURL}/api/customer/`;
 const storedToken = localStorage.getItem('accessToken');
+if(!storedToken)
+window.location.href="../index.html"
 const token=JSON.parse(storedToken).token;
 
 
@@ -18,9 +20,14 @@ function getProduct(){
   if(balanceAmount.innerHTML==="Balance Amount")
   balanceAmount.innerHTML="0";
 
+  if(!quantity || !barcode)
+  alert("All fields are neccessary")
+  else{
 fetch(inventoryUrl+`${barcode}`)
-  .then((res) => res.json())
+  .then((res)=>res.json())
   .then((element) => {
+    if(!element)
+    alert("Invalid Barcode")
     const container = document.querySelector(".productsContainer");
     const amount=(element.rate)*(quantity);
       const parent = document.createElement("div");
@@ -34,8 +41,10 @@ fetch(inventoryUrl+`${barcode}`)
       container.append(parent);
       totalAmount.innerHTML=Number(totalAmount.innerHTML)+Number(amount);
       balanceAmount.innerHTML=Number(balanceAmount.innerHTML)+Number(amount);
-
+      document.querySelector(".quantity").value="";
+      document.querySelector(".barcode").value="";
   });
+}
 }
 
 function deleteMe(element)
@@ -87,6 +96,9 @@ function createPerforma()
   body:requestBody
   }).then(res=>res.json()).then(data=>{
 
+    document.querySelector(".pop-up").style.display="flex";
+    setTimeout(()=>document.querySelector(".pop-up").style.display="none",3000)
+    
 const doc = new jspdf.jsPDF();
 
 doc.setFontSize(30);
@@ -99,13 +111,14 @@ doc.setFontSize(20);
 doc.text('Performa Invoice', 80, 55);
 
 doc.setFontSize(16);
-doc.text(`Employee: ${data.employeeName}`, 20, 70);
-doc.text(`Customer Phone: ${data.phone}`, 20, 78);
+doc.text(`Employee: ${data.employeeName}`, 20, 66);
+doc.text(`Customer Phone: ${data.phone}`, 20, 74);
+doc.text(`Customer Name: ${customerName}`,20, 82)
 doc.text(`Date: ${new Date(data.date).toLocaleDateString('en-GB', {
   day: '2-digit',
   month: '2-digit',
   year: 'numeric',
-})}`, 20, 86);
+})}`, 20, 90);
 
 let startY = 105;
 
@@ -151,5 +164,13 @@ doc.text(`Advance: ${data.paid}`, 150, startY + 20);
 doc.text(`Balance: ${data.balance}`, 150, startY + 30);
 doc.save('order-summary.pdf');
 
-  });
+window.location.reload()});
 }
+
+const logOutBtn=document.querySelector(".btn-outline-success");
+
+logOutBtn.addEventListener("click",()=>{
+    localStorage.removeItem("accessToken");
+    console.log("Hello World")
+    window.location.href="../index.html";
+})

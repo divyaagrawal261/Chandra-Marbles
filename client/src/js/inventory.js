@@ -1,6 +1,10 @@
 const apiURL="http://localhost:5001";
 const inventoryUrl=`${apiURL}/api/stock/all`;
+const storedToken = localStorage.getItem('accessToken');
+if(!storedToken)
+window.location.href="../index.html"
 
+document.querySelector(".loader").style.display="flex";
 fetch(inventoryUrl).then(res=>res.json()).then((data)=>{
     console.log(data)
     const container=document.querySelector(".productsContainer");
@@ -15,4 +19,13 @@ fetch(inventoryUrl).then(res=>res.json()).then((data)=>{
 
         container.append(parent);
     });
+    document.querySelector(".loader").style.display="none";
+})
+
+const logOutBtn=document.querySelector(".btn-outline-success");
+
+logOutBtn.addEventListener("click",()=>{
+    localStorage.removeItem("accessToken");
+    console.log("Hello World")
+    window.location.href="../index.html";
 })
