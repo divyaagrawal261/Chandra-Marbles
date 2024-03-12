@@ -18,17 +18,9 @@ const stockSchema=new mongoose.Schema({
         type:Number,
         default: 0
     },
-    designName:{
-        type:String,
-        required:[true, "Please provide a Design Name"]
-    },
     quality:{
         type: String,
         required: [true, "Please enter a quality"]
-    },
-    rate:{
-        type:Number,
-        required:[true, "Please provide a rate"]
     }
 })
 

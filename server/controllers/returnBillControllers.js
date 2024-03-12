@@ -15,9 +15,9 @@ const createReturn=expressAsyncHandler(async(req,res)=>
         for(const element of Products){
             const barcode=element.barcode;
             const found=await Stock.findOneAndUpdate({barcode},{$inc:{quantity:element.quantity}});
-            totalAmount=totalAmount+(element.quantity*found.rate);
+            totalAmount=totalAmount+(element.quantity*element.rate);
             const id=((found._id).toString()).split(`'`)[0];
-            products.push({product: id,barcode:barcode,returnedQuantity: element.quantity});
+            products.push({product: id,barcode:barcode,returnedQuantity: element.quantity, rate: element.rate});
         };
         
         let bill=await ReturnBill.create({totalAmount, products});
@@ -44,4 +44,12 @@ const deleteReturnBill=expressAsyncHandler(async(req,res)=>{
     res.status(400).json("You are not authorized to delete Bills!");
 })
 
-export {deleteReturnBill, createReturn};
+const getAllBills=expressAsyncHandler(async(req,res)=>{
+    const bills=await ReturnBill.find();
+    if(req.user.isAdmin)
+    res.status(200).json(bills);
+    else
+    res.status(400).json("Unauthorized");
+})
+
+export {deleteReturnBill, createReturn, getAllBills};

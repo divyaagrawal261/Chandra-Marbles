@@ -7,6 +7,7 @@ window.location.href="../public/error.html"
 const apiURL="https://chandra-marbles.onrender.com";
 const customerUrl=`${apiURL}/api/customer`;
 
+document.querySelector(".loader").style.display="flex";
 fetch(customerUrl).then(res=>res.json()).then((data)=>{
     const container=document.querySelector(".container-fluid");
     data.map((element)=>{
@@ -18,4 +19,12 @@ fetch(customerUrl).then(res=>res.json()).then((data)=>{
 
         container.append(parent);
     });
+    document.querySelector(".loader").style.display="none";
+})
+
+const logOutBtn=document.querySelector(".btn-outline-success");
+
+logOutBtn.addEventListener("click",()=>{
+    localStorage.removeItem("accessToken");
+    window.location.href="../index.html";
 })

@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema({
   },
   barcode:{type:String},
   returnedQuantity: Number, 
+  rate:Number
 });
 
 const ReturnBillSchema = new mongoose.Schema({

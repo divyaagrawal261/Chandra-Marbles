@@ -3,56 +3,64 @@
     padding: 0;
     box-sizing: border-box;
   }
+  :root{
+    --myBlack:#1f1f1f;
+    --myWhite:#faf6f0;
+    --myBlue:#16273b;
+    --myGlass:#ffffff80;
+    --myOverlay:#00000080;
+    }
   body {
     height: 100vh;
-    background-color: rgb(252, 155, 155);
-    background-image: url(../assets/LoginBG.png);
+    background-color: var(--myBlue);
+    background-image: url(../assets/main.jpg);
     background-size: cover;
     background-position: 50% 50%;
   }
   .navbar {
-    background-color: rgba(17, 11, 13, 0.521) !important;
+    background-color: var(--myOverlay) !important;
     backdrop-filter: blur(5px);
     padding: 10px;
     font-weight: 500;
+    z-index: 9999;
   }
   .navbar button {
-    color: white;
-    border-color: white;
+    color: var(--myWhite);
+    border-color: var(--myWhite);
   }
   .navbar button:hover {
-    background-color: #5a0c1e;
-    border-color: white;
+    background-color: var(--myWhite);
+    color: var(--myBlack);
   }
   .rowHead{
       font-size: 16px;
       text-align: left;
-      background-color: black;
-      color: white;
+      background-color: var(--myBlack);
+      color: var(--myWhite);
   }
   .rowHead div{
       padding: 10px;
       border-width: 3px 1px 3px 0px;
       border-style: solid;
-      border-color:rgb(177, 177, 177);
+      border-color:var(--myWhite);
   }
   .rowHead div:last-child{
       border-right: none;
   }
   .productRow,.inputRow{
-      background-color: #5a0c1e;
-      color: white;
-  border-bottom:1px solid white;
+      background-color: var(--myOverlay);
+      color: var(--myWhite);
+  border-bottom:1px solid var(--myWhite);
   }
   .productRow div:not(:last-child), .inputRow div:not(:last-child){
       border-width: 0px 1px 0px 0px;
       border-style: solid;
-      border-color:white;
+      border-color:var(--myWhite);
   }
   .productRow:hover{
-      background-color: #5a0c1e42;
+      background-color: var(--myWhite);
       backdrop-filter: blur(5px);
-      color: black;
+      color: var(--myBlack);
       transition: 300ms;
   }
   .customerDetails{
@@ -60,15 +68,12 @@
     margin: 3px 0px;
     width: 100%;
   }
-.customerDetails div input{
-    border: 1px solid black;
-}
 .customerDetails div{
     margin: 3px;
 }
 button{
-  color: black;
-  background-color: white;
+  color: var(--myBlack);
+  background-color: var(--myWhite);
   border: none;
 }
 .paymentDetails{
@@ -76,9 +81,11 @@ button{
   width:200px;
   margin: 5px;
 }
-.totalAmount, .balanceAmount{
-  background-color: white;
+.totalAmount, .balanceAmount, .discountedAmount{
+  background-color: var(--myWhite);
   padding: 5px;
+  margin: 2px;
+  border-radius: 5px;
   font-size: 16px;
 }
 .controlSection{
@@ -88,10 +95,48 @@ button{
   flex-direction:column;
 }
 .controlSection button{
-  padding: 5px;
+  padding: 10px;
+  margin: 10px;
   border-radius: 10px;
 }
 .controlSection button:hover{
-  background-color: black;
+  background-color: var(--myBlack);
   color: white;
+  border: 1px solid var(--myWhite);
+}
+.pop-up{
+  z-index: 2000;
+  height: 100vh;
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: var(--myGlass);
+}
+.pop-up img{
+  border-radius: 50px;
+  height: 200px;
+}
+.Add{
+  background-color: rgb(5, 214, 5);
+  border-radius: 5px;
+  margin-left: 3px;
+  padding-right: 3px;
+  font-weight: 500;
+  color: var(--myWhite);
+}
+.deleteBtn{
+  background-color: rgb(243, 25, 116);
+  border-radius: 5px;
+  margin-left: 3px;
+  padding: 5px;
+  font-weight: 500;
+  color: var(--myWhite);
+}
+@media (max-width:575px) {
+  .productRow div{
+    padding: 2px !important;
+  }  
 }

@@ -3,11 +3,12 @@ import SaleBill from "../models/saleBillModel.js";
 import expressAsyncHandler from "express-async-handler";
 import Customer from "../models/customerModel.js";
 import Employee from "../models/employeeModel.js";
+import express from "express";
 
 const createSale=expressAsyncHandler(async(req,res)=>
 {
     const Products=req.body.Products;
-    const {customerName, phone, paid}=req.body;
+    const {customerName, phone, paid, discount}=req.body;
     const employeePhone=req.user.phone;
     const employeeName=req.user.employeeName;
     
@@ -35,17 +36,17 @@ const createSale=expressAsyncHandler(async(req,res)=>
         for(const element of Products){
             const barcode=element.barcode;
             const found=await Stock.findOneAndUpdate({barcode},{$inc:{quantity:-element.quantity}});
-            totalAmount=totalAmount+(element.quantity*found.rate);
+            totalAmount=totalAmount+(element.quantity*element.rate);
             const id=((found._id).toString()).split(`'`)[0];
-            products.push({product: id,barcode:barcode,orderedQuantity: element.quantity});
+            products.push({product: id,barcode:barcode,orderedQuantity: element.quantity, rate: element.rate});
         };
 
-        const balance=Number(totalAmount)-Number(paid);
+        const balance=Number(totalAmount)-Number(discount)-Number(paid);
         
         await Customer.findOneAndUpdate({phone}, {$inc:{balanceAmount:balance}});
         await Employee.findOneAndUpdate({phone:employeePhone},{$inc:{saleTillDate:totalAmount}});
 
-        let bill=await SaleBill.create({employeeName, phone, totalAmount, products, paid, balance});
+        let bill=await SaleBill.create({employeeName, phone, totalAmount, products, paid,discount, balance});
         bill=await SaleBill.findById(bill.id).populate({path:"products.product",select:"-quantity"});
     
         res.status(200).json(bill);
@@ -69,4 +70,12 @@ const deleteSaleBill=expressAsyncHandler(async(req,res)=>{
     res.status(400).json("You are not authorized to delete Bills!");
 })
 
-export {deleteSaleBill, createSale};
+const getAllBills=expressAsyncHandler(async(req,res)=>{
+    const bills=await SaleBill.find();
+    if(req.user.isAdmin)
+    res.status(200).json(bills);
+    else
+    res.status(400).json("Unauthorized");
+})
+
+export {deleteSaleBill, createSale, getAllBills};

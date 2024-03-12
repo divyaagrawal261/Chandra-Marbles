@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Inventory</title>
+    <title>New Return</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../src/styles/inventory.css">
+    <link rel="stylesheet" href="../../src/styles/newPerforma.css">
 </head>
 <body>
-    <div class="loader">
-        <img src="../src/assets/processing.gif" alt="LoaderGIF">
+    <div class="pop-up">
+        <img src="../../src/assets/check.gif" alt="" ><br>
+        <h2>Returned Successfully</h2>
     </div>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-        <a class="navbar-brand" href="adminDash.html">Chandra Marbles</a>
+        <a class="navbar-brand" href="./headDash.html">Chandra Marbles</a>
         <button
             class="navbar-toggler d-lg-none"
             type="button"
@@ -35,13 +36,28 @@
     <section>
         <div class="container-fluid productsContainer">
             <div class="row rowHead">
-                <div class="col-4">Barcode</div>
-                <div class="col-lg-6 col-md-4 col-sm-4 col-5">Details</div>
-                <div class="col-3 col-lg-2 quantityHeader">Quantity</div>
+                <div class="col-lg-3 col-3 ">Design Number<button onclick="getProduct()" class="Add">✅Add</button></div>
+                <div class="col-lg-5 col-md-4 col-sm-4 col-3">Details</div>
+                <div class="col-2 col-lg-2">Quantity</div>
+                <div class="col-lg-1 col-2">Rate</div>
+                <div class="col-lg-1 col-2">Amt</div>
+            </div>
+            <div class="row inputRow">
+                <input class="col-lg-3 col-3 barcode">
+                <div class="col-lg-5 col-md-4 col-sm-4 col-3"></div>
+                <input type="number" class="col-2 col-lg-2 quantity" value="">
+                <input type="number" class="col-lg-1 col-2 rate" value="">
+                <div class="col-lg-1 col-2"></div>
             </div>
         </div>
     </section>
-    <script src="../src/js/inventory.js"></script>
+    <section class="paymentDetails">
+        <div class="totalAmount">Amount</div>
+    </section>
+    <section class="controlSection">
+        <button class="createPerformaBtn" onclick="createPerforma()">Create Return</button>
+    </section>
+    <script src="../../src/js/newReturn.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

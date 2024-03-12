@@ -3,26 +3,34 @@
     padding: 0;
     box-sizing: border-box;
   }
+  :root{
+    --myBlack:#1f1f1f;
+    --myWhite:#faf6f0;
+    --myBlue:#16273b;
+    --myGlass:#ffffff80;
+    --myOverlay:#00000080;
+    }
   body {
     height: 100vh;
-    background-color: rgb(252, 155, 155);
-    background-image: url(../assets/LoginBG.png);
+    background-color: var(--myBlue);
+    background-image: url(../assets/main.jpg);
     background-size: cover;
     background-position: 50% 50%;
   }
 .navbar {
-    background-color: rgba(17, 11, 13, 0.521) !important;
+    background-color: var(--myOverlay) !important;
     backdrop-filter: blur(5px);
     padding: 10px;
     font-weight: 500;
+    z-index: 9999;
   }
   .navbar button {
-    color: white;
-    border-color: white;
+    color: var(--myWhite);
+    border-color: var(--myWhite);
   }
   .navbar button:hover {
-    background-color: #5a0c1e;
-    border-color: white;
+    background-color:var(--myWhite);
+    color: var(--myBlack);
   }
 section{
     width: 100%;
@@ -45,7 +53,7 @@ section{
     align-items: center;
     font-size: 40px;
     font-weight: 800;
-    color: rgb(37, 18, 18);
+    color: var(--myBlack);
     height: inherit !important;
 }
 .leftSection p{
@@ -68,22 +76,21 @@ form div{
     width: 100%;
 }
 button{
-    background-color: #5A0C1E;
-    border: none;
+    background-color: var(--myBlack);
     padding: 10px;
     border-radius: 10px;
-    color: white;
+    color: var(--myWhite);
+    border: 1px solid var(--myWhite);
     font-weight: 500;
 }
-button:hover{
+.Btn:hover{
     box-sizing: border-box;
-    color: #5A0C1E;
-    padding: 9px;
-    background-color: white;
-    border: 1px solid #5A0C1E;
+    color: var(--myBlack);
+    background-color: var(--myWhite);
+    border: 1px solid var(--myBlack);
 }
 .scrollDown{
-    color: rgb(37, 18, 18);
+    color: var(--myBlack);
     position: absolute;
     bottom: 10px;
     left: 40vw;
@@ -95,4 +102,22 @@ button:hover{
     .scrollDown{
         display: block;
     }
+    .pop-up{
+        top: 100vh;
+    }
 }
+.pop-up{
+    z-index: 2000;
+    height: 100vh;
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: var(--myGlass);
+  }
+  .pop-up img{
+    border-radius: 50px;
+    height: 200px;
+  }

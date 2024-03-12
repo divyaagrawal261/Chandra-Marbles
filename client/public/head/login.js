@@ -1,4 +1,4 @@
-const apiURL="https://chandra-marbles.onrender.com";
+const apiURL="http://localhost:5001";
 
 const loginurl = `${apiURL}/api/employee/login`;
 const getUserDetailsUrl = `${apiURL}/api/employee/`;
@@ -37,7 +37,10 @@ const login = (event) => {
         const isAdmin=data.employee.isAdmin;
         setAccessTokenWithExpiry(accessToken,isAdmin, 360)
         getUserDetails(accessToken);
-        window.location.href=data.redirectUrl;
+        if(!data.employee.isAdmin)
+        window.location.href="../error.html";
+        else
+        window.location.href="./headDash.html";
       })
       .catch((err) => console.log(err));
     } catch (err) {

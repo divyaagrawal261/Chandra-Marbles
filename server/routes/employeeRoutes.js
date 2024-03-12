@@ -6,7 +6,7 @@ Router.get("/all",showEmployees);
 Router.post("/login",loginEmployee)
 Router.use("/",validateToken)
       .post("/register",registerEmployee)
-      .get("/",getEmployee)
+      .get("/:phone",getEmployee)
       .patch("/pay",updateEmployee)
 
 export default Router;
