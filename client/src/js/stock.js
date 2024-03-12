@@ -32,7 +32,7 @@ function add(event)
         {document.querySelector(".pop-up").style.display="flex";
         setTimeout(()=>{document.querySelector(".pop-up").style.display="none";},3000)
         setTimeout(()=>{window.location.reload()},3000)}
-        return res.json();}).then(data=>console.log(data));
+        return res.json();}).then();
 }
 
 const createBtn=document.querySelector(".Btn");
@@ -43,6 +43,5 @@ const logOutBtn=document.querySelector(".btn-outline-success");
 
 logOutBtn.addEventListener("click",()=>{
     localStorage.removeItem("accessToken");
-    console.log("Hello World")
     window.location.href="../index.html";
 })

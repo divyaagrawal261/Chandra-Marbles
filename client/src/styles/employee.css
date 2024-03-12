@@ -1,119 +1,128 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    height: 100vh;
-    background-color: rgb(252, 155, 155);
-    background-image: url(../assets/LoginBG.png);
-    background-size: cover;
-    background-position: 50% 50%;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --myBlack: #1f1f1f;
+  --myWhite: #faf6f0;
+  --myBlue: #16273b;
+  --myGlass: #ffffff80;
+  --myOverlay: #00000080;
+}
+body {
+  height: 100vh;
+  background-color: var(--myBlue);
+  background-image: url(../assets/main.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+}
 .navbar {
-    position: fixed;
-    width: 100%;
-    z-index: 9999;
-    background-color: rgba(17, 11, 13, 0.521) !important;
-    backdrop-filter: blur(5px);
-    padding: 10px;
-    font-weight: 500; 
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  background-color: var(--myOverlay) !important;
+  backdrop-filter: blur(5px);
+  padding: 10px;
+  font-weight: 500;
+}
+.navbar button {
+  color: var(--myWhite);
+  border-color: var(--myWhite);
+}
+.navbar button:hover {
+  background-color: var(--myWhite);
+  color: var(--myBlack);
+}
+section {
+  width: 100%;
+  height: inherit;
+}
+.container-fluid {
+  height: inherit;
+}
+.row {
+  height: inherit;
+}
+.leftSection {
+  backdrop-filter: blur(2px);
+  background-image: url(../assets/LoginBG.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--myBlack);
+  height: inherit !important;
+}
+.leftSection p {
+  font-size: 20px;
+}
+.rightSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: inherit !important;
+}
+.rightSection form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form div {
+  width: 100%;
+}
+button {
+  background-color: var(--myBlack);
+  border: 1px solid var(--myWhite);
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--myWhite);
+  font-weight: 500;
+}
+.Btn:hover {
+  box-sizing: border-box;
+  color: var(--myBlack);
+  padding: 9px;
+  background-color: var(--myWhite);
+}
+.scrollDown {
+  color: var(--myBlack);
+  position: absolute;
+  bottom: 10px;
+  left: 40vw;
+  font-size: 18px;
+  width: fit-content;
+  display: none;
+}
+@media (max-width: 575px) {
+  .scrollDown {
+    display: block;
   }
-  .navbar button {
-    color: white;
-    border-color: white;
+  .pop-up {
+    top: 100vh;
   }
-  .navbar button:hover {
-    background-color: #5a0c1e;
-    border-color: white;
-  }
-section{
-    width: 100%;
-    height: inherit;
 }
-.container-fluid{
-    height: inherit;
+.pop-up {
+  z-index: 2000;
+  height: 100vh;
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: var(--myGlass);
 }
-.row{
-    height: inherit;
+.pop-up img {
+  border-radius: 50px;
+  height: 200px;
 }
-.leftSection{
-    background-image:url(../assets/LoginBG.jpg);
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: 50% 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    font-weight: 800;
-    color: rgb(37, 18, 18);
-    height: inherit !important;
+.showPassword {
+  color: var(--myWhite);
 }
-.leftSection p{
-    font-size: 20px;
-}
-.rightSection
-{
-    display: flex;
-    flex-direction:row;
-    justify-content: center;
-    align-items: center;
-    height: inherit !important;
-}
-.rightSection form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-form div{
-    width: 100%;
-}
-button{
-    background-color: #5A0C1E;
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    font-weight: 500;
-}
-button:hover{
-    box-sizing: border-box;
-    color: #5A0C1E;
-    padding: 9px;
-    background-color: white;
-    border: 1px solid #5A0C1E;
-}
-.scrollDown{
-    color: rgb(37, 18, 18);
-    position: absolute;
-    bottom: 10px;
-    left: 40vw;
-    font-size: 18px;
-    width: fit-content;
-    display: none;
-}
-@media (max-width:575px) {
-    .scrollDown{
-        display: block;
-    }
-    .pop-up{
-        top: 100vh;
-    }
-}
-.pop-up{
-    z-index: 2000;
-    height: 100vh;
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.582);
-  }
-  .pop-up img{
-    border-radius: 50px;
-    height: 200px;
-  }

@@ -44,4 +44,12 @@ const deleteReturnBill=expressAsyncHandler(async(req,res)=>{
     res.status(400).json("You are not authorized to delete Bills!");
 })
 
-export {deleteReturnBill, createReturn};
+const getAllBills=expressAsyncHandler(async(req,res)=>{
+    const bills=await ReturnBill.find();
+    if(req.user.isAdmin)
+    res.status(200).json(bills);
+    else
+    res.status(400).json("Unauthorized");
+})
+
+export {deleteReturnBill, createReturn, getAllBills};

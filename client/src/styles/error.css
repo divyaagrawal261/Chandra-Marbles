@@ -3,7 +3,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root{
+    --myBlack:#1f1f1f;
+    --myWhite:#faf6f0;
+    --myBlue:#16273b;
+    --myGlass:#ffffff80;
+    --myOverlay:#00000080;
+    }
 body{
+    background-color: var(--myBlue);
     background-image: url(../assets/errorBg.jpg);
     min-height: 100vh;
     background-size: cover;
@@ -12,8 +20,8 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--myWhite);
 }
 a{
-    color: white;
+    color: var(--myWhite);
 }

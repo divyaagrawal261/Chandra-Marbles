@@ -37,7 +37,10 @@ const login = (event) => {
         const isAdmin=data.employee.isAdmin;
         setAccessTokenWithExpiry(accessToken,isAdmin, 360)
         getUserDetails(accessToken);
-        window.location.href=data.redirectUrl;
+        if(!data.employee.isAdmin)
+        window.location.href="../error.html";
+        else
+        window.location.href="./headDash.html";
       })
       .catch((err) => console.log(err));
     } catch (err) {

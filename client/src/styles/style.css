@@ -1,14 +1,20 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 :root{
-    --container-color:#fff5e381;
+--myBlack:#1f1f1f;
+--myWhite:#faf6f0;
+--myBlue:#16273b;
+--myGlass:#ffffff80;
+--myOverlay:#00000080;
 }
 body{
     height: 100vh;
-    background-color: rgb(252, 155, 155);
-    background-image: url(../assets/LoginBG.png);
+    background-color: var(--myBlue);
+    background-image: url(../assets/main.jpg);
+    backdrop-filter: blur(2px);
     background-size: cover;
     background-position: 50% 50%;
     overflow-y: hidden;
@@ -25,7 +31,7 @@ section{
     align-items: center;
 }
 section .container{
-    background-color: var(--container-color);
+    background-color: var(--myGlass);
     backdrop-filter: blur(5px);
     padding: 1rem;
     width: 22rem;
@@ -36,22 +42,21 @@ form label{
     font-weight: bold !important;
 }
 form button{
-    background-color: #5A0C1E !important;
+    background-color: var(--myBlack) !important;
     border: none !important;
 }
 form button:hover{
-    background-color: black !important;
-    color: white !important;
+    background-color: var(--myWhite) !important;
+    color: var(--myBlack) !important;
 }
 a{
-    color: black;
+    color: var(--myBlack);
 }
 .pop-up{
     position: absolute;
-    background-color: rgb(24, 21, 21);
+    background-color: var(--myWhite);
     padding: 10px;
-    color: rgb(255, 255, 255);
-    border: 1px solid var(--container-color);
+    color: var(--myBlack);
     margin: 5px;
     border-radius: 10px;
     display: none;
@@ -60,7 +65,7 @@ a{
 .digiHands{
 position: absolute;
 top: 70px;
-color: #5A0C1E;
+color: var(--myWhite);
 font-size: 50px;
 font-weight: 900;
 text-align: center;
@@ -71,7 +76,7 @@ text-align: center;
 .loader img{
     width: 150px;
     border-radius: 75px;
-    border: 5px solid black;
+    border: 5px solid var(--myBlack);
 }
 .loader
 {
@@ -82,5 +87,5 @@ text-align: center;
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.301);
+    background-color: var(--myOverlay);
 }

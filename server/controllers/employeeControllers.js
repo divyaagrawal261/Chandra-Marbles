@@ -35,7 +35,7 @@ const registerEmployee=expressAsyncHandler(async(req,res)=>{
 
 //Details of Employee
 const getEmployee=expressAsyncHandler(async(req,res)=>{
-    const phone=req.user.phone;
+    const phone=req.params.phone;
     const employee=await Employee.findOne({phone})
     res.status(200).json(employee);
 })

@@ -7,6 +7,7 @@ window.location.href="../public/error.html"
 const apiURL="http://localhost:5001";
 const customerUrl=`${apiURL}/api/customer`;
 
+document.querySelector(".loader").style.display="flex";
 fetch(customerUrl).then(res=>res.json()).then((data)=>{
     const container=document.querySelector(".container-fluid");
     data.map((element)=>{
@@ -18,12 +19,12 @@ fetch(customerUrl).then(res=>res.json()).then((data)=>{
 
         container.append(parent);
     });
+    document.querySelector(".loader").style.display="none";
 })
 
 const logOutBtn=document.querySelector(".btn-outline-success");
 
 logOutBtn.addEventListener("click",()=>{
     localStorage.removeItem("accessToken");
-    console.log("Hello World")
     window.location.href="../index.html";
 })

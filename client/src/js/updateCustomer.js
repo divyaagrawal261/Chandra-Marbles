@@ -5,21 +5,46 @@ const isAdmin=JSON.parse(storedToken).isAdmin;
 if(!isAdmin)
 window.location.href="../public/error.html"
 const apiURL = "http://localhost:5001";
-const employeeURL= `${apiURL}/api/employee/register`;
+const employeeURL= `${apiURL}/api/customer/`;
 const token=JSON.parse(storedToken).token;
 
+function findCustomer(event)
+{
+    event.preventDefault();
+    const phone=document.querySelector(".phone").value;
+    
+    fetch(employeeURL+phone,
+        {method:"GET",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    }).then(res=>
+        {
+            if(!res.ok)
+            alert("Incorrect Phone Number");
+
+            return res.json();
+        }).then(data=>
+        {
+         const name=document.querySelector(".name");
+         name.value=data.customerName;
+         const saleTillDate=document.querySelector(".saleTillDate");
+         saleTillDate.value=data.balanceAmount;
+        })
+
+}
 function create(event)
 {
     event.preventDefault();
- const employeeName=document.querySelector(".name").value;
  const phone=document.querySelector(".phone").value;
- const password=document.querySelector(".password").value;
+ const Amount=document.querySelector(".amount").value;
 
- const requestBody=JSON.stringify({employeeName,phone,password});
+ const requestBody=JSON.stringify({phone,Amount})
 
  try{
- fetch(employeeURL, {
-    method:"POST",
+ fetch(employeeURL+"update", {
+    method:"PATCH",
     headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -41,8 +66,9 @@ catch(err)
 }
 }
 
-const Btn=document.querySelector(".Btn");
-Btn.addEventListener("click",create);
+const Btn=document.querySelectorAll(".Btn");
+Btn[1].addEventListener("click",create);
+Btn[0].addEventListener("click",findCustomer);
 
 const logOutBtn=document.querySelector(".btn-outline-success");
 

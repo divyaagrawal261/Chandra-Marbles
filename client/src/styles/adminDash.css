@@ -3,10 +3,17 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
+:root {
+    --myBlack: #1f1f1f;
+    --myWhite: #faf6f0;
+    --myBlue: #16273b;
+    --myGlass: #ffffff80;
+    --myOverlay: #00000080;
+  }
 body{
     height: 100vh;
-    background-color: rgb(252, 155, 155);
-    background-image: url(../assets/LoginBG.png);
+    background-color: var(--myBlue);
+    background-image: url(../assets/main.jpg);
     background-size: cover;
     background-position: 50% 50%;
 }
@@ -20,7 +27,7 @@ body{
     top: 60px;
 }
 .navbar{
-    background-color: rgba(17, 11, 13, 0.521) !important;
+    background-color:var(--myOverlay) !important;
     backdrop-filter: blur(5px);
     padding: 10px;
     font-weight: 500;
@@ -29,12 +36,12 @@ body{
     z-index: 9999;
 }
 .navbar button{
-    color: white;
-    border-color:white;
+    color: var(--myWhite);
+    border-color:var(--myWhite);
 }
 .navbar button:hover{
-    background-color: #5A0C1E;
-    border-color:white;
+    background-color: var(--myWhite);
+    color:var(--myBlack);
 }
 section{
     height: 90vh;
@@ -78,14 +85,27 @@ section{
     font-size: 20px;
     text-align: center;
     backdrop-filter: blur(5px);
-    background-color: #0000006e !important;
-    color: rgb(255, 255, 255);
+    background-color: var(--myOverlay) !important;
+    color: var(--myWhite);
     font-weight: 700;
     border-radius:5px ;
 }
 .optionsSection .container a:hover{
-    background-color: rgba(255, 255, 255, 0.459) !important;
-    color: black;
-    border:1px solid black;
+    background-color: var(--myWhite) !important;
+    color: var(--myBlack);
+    border:1px solid var(--myBlack);
     cursor: pointer;
+}
+@media (max-width:575px) {
+    .imgSection{
+        width: 100%;
+        height: min-content;
+    }
+    .optionsSection{
+        width: 100%;
+        height: 800px;
+        }
+    .optionsSection .container{
+        margin-top: -300px;
+    }
 }
