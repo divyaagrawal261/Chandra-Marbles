@@ -74,15 +74,13 @@ fetch(billsUrl+"all",{
 
 function deleteMe(id)
 {
-    fetch(`${billsUrl}/delete/${id}`,{
+    fetch(`${billsUrl}delete/${id}`,{
         method:"DELETE",
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         }
-    }).then(res=>res.json());
-
-    window.location.reload();
+    }).then(res=>res.json()).then((data)=>window.location.reload());
 }
 
 const logOutBtn=document.querySelector(".btn-outline-success");

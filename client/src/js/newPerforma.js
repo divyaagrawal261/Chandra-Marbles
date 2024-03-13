@@ -69,9 +69,9 @@ function updateAmount()
   const totalAmount=document.querySelector(".totalAmount");
   const advanceAmount=document.querySelector(".advance").value;
   const balanceAmount=document.querySelector(".balanceAmount");
-  const discount=Number(totalAmount.innerHTML)*Number(percentage)*0.01;
-  discountedAmount.innerHTML=Number(totalAmount.innerHTML)-Number(discount)
-  balanceAmount.innerHTML=Number(discountedAmount.innerHTML)-Number(advanceAmount);
+  const discount=(Number(totalAmount.innerHTML)*Number(percentage)*0.01).toFixed(2);
+  discountedAmount.innerHTML=(Number(totalAmount.innerHTML)-Number(discount)).toFixed(2);
+  balanceAmount.innerHTML=(Number(discountedAmount.innerHTML)-Number(advanceAmount)).toFixed(2);
 }
 
 function createPerforma()
@@ -89,11 +89,10 @@ function createPerforma()
   const customerName=document.querySelector(".customerName").value;
   const phone=document.querySelector(".customerPhone").value;
   const paid=(document.querySelector(".advance")).value;
-  const discountedAmount=(document.querySelector(".discountedAmount")).innerHTML;
+  const percentage=document.querySelector(".discount").value;
   const totalAmount=(document.querySelector(".totalAmount")).innerHTML;
-  const discount=Number(totalAmount)-Number(discountedAmount);
   const requestBody=JSON.stringify({
-    customerName, phone, paid, Products, discount
+    customerName, phone, paid, Products, discount:percentage
   })
 
   fetch(saleUrl,{

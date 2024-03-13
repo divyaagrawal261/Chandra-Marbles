@@ -40,13 +40,13 @@ const createSale=expressAsyncHandler(async(req,res)=>
             const id=((found._id).toString()).split(`'`)[0];
             products.push({product: id,barcode:barcode,orderedQuantity: element.quantity, rate: element.rate});
         };
-
-        const balance=Number(totalAmount)-Number(discount)-Number(paid);
+        const discountAmount=(Number(discount)*Number(totalAmount)*0.01).toFixed(2);
+        const balance=(Number(totalAmount)-Number(discountAmount)-Number(paid)).toFixed(2);
         
         await Customer.findOneAndUpdate({phone}, {$inc:{balanceAmount:balance}});
         await Employee.findOneAndUpdate({phone:employeePhone},{$inc:{saleTillDate:totalAmount}});
 
-        let bill=await SaleBill.create({employeeName, phone, totalAmount, products, paid,discount, balance});
+        let bill=await SaleBill.create({employeeName, phone, totalAmount, products, paid,discount:discountAmount, balance});
         bill=await SaleBill.findById(bill.id).populate({path:"products.product",select:"-quantity"});
     
         res.status(200).json(bill);
