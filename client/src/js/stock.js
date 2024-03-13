@@ -6,7 +6,7 @@ const isAdmin=JSON.parse(storedToken).isAdmin;
 if(!isAdmin)
 window.location.href="../public/error.html"
 
-const apiURL = "https://chandra-marbles.onrender.com";
+const apiURL = "http://localhost:5001";
 const StockUrl = `${apiURL}/api/stock/create`;
 
 function add(event)

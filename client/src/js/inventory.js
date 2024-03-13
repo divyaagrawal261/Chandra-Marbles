@@ -1,4 +1,4 @@
-const apiURL="https://chandra-marbles.onrender.com";
+const apiURL="http://localhost:5001";
 const inventoryUrl=`${apiURL}/api/stock/all`;
 const storedToken = localStorage.getItem('accessToken');
 if(!storedToken)
