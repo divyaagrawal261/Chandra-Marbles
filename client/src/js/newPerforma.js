@@ -15,7 +15,7 @@ function getProduct(){
   const totalAmount=document.querySelector(".totalAmount");
   const balanceAmount=document.querySelector(".balanceAmount");
 
-  if(totalAmount.innerHTML === "Amount")
+  if(totalAmount.innerHTML === "Total Amount")
   totalAmount.innerHTML="0";
 
   if(balanceAmount.innerHTML==="Balance Amount")
@@ -30,7 +30,8 @@ fetch(inventoryUrl+`${barcode}`)
     if(!element)
     alert("Invalid Barcode")
     const container = document.querySelector(".productsContainer");
-    const amount=(rate)*(quantity);
+    const amount=Number(rate)*Number(quantity);
+    console.log(rate, quantity, amount)
       const parent = document.createElement("div");
       parent.className = "row productRow";
       parent.innerHTML = `<div class="col-lg-3 col-3 productBarcode">${element.barcode}<button onclick="deleteMe(this)" class="deleteBtn">Delete</button></div>
