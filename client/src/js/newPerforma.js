@@ -15,7 +15,7 @@ function getProduct(){
   const totalAmount=document.querySelector(".totalAmount");
   const balanceAmount=document.querySelector(".balanceAmount");
 
-  if(totalAmount.innerHTML === "Amount")
+  if(totalAmount.innerHTML === "Total Amount")
   totalAmount.innerHTML="0";
 
   if(balanceAmount.innerHTML==="Balance Amount")
