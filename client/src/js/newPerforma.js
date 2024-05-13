@@ -181,9 +181,17 @@ doc.text(`Balance: ${data.balance}`, 150, startY + 40);
 if(data.balance==0)
 doc.addImage("https://cdn-icons-png.flaticon.com/512/3862/3862504.png", "JPEG", 160, startY + 50, 10, 10);
 
-doc.save('order-summary.pdf');
+// doc.save('order-summary.pdf');
 
-setTimeout(()=>{window.location.reload()},3000)});
+var pdfData = doc.output('blob');
+
+  var url = URL.createObjectURL(pdfData);
+  window.open(url);
+
+
+// setTimeout(()=>{window.location.reload()},3000)
+}
+);
 }
 
 const logOutBtn=document.querySelector(".btn-outline-success");
