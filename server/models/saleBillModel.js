@@ -35,6 +35,14 @@ const SaleBillSchema = new mongoose.Schema({
   },
   discount:{
     type:Number //Discount Amount
+  },
+  isPrinted:{
+    type:Boolean,
+    default:true
+  },
+  blobURI:{
+    type:String,
+    default:null
   }
 });
 

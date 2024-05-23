@@ -3,7 +3,6 @@ import SaleBill from "../models/saleBillModel.js";
 import expressAsyncHandler from "express-async-handler";
 import Customer from "../models/customerModel.js";
 import Employee from "../models/employeeModel.js";
-import express from "express";
 
 const createSale=expressAsyncHandler(async(req,res)=>
 {
@@ -11,7 +10,12 @@ const createSale=expressAsyncHandler(async(req,res)=>
     const {customerName, phone, paid, discount}=req.body;
     const employeePhone=req.user.phone;
     const employeeName=req.user.employeeName;
-    
+    const isPrinted=req.user.isAdmin;
+    var blobURI="";
+
+    if(!req.user.isAdmin)
+    blobURI=req.body.blob;
+
     try{
         if(!employeePhone)
         throw new Error("Employee Not Logged In");
@@ -46,7 +50,7 @@ const createSale=expressAsyncHandler(async(req,res)=>
         await Customer.findOneAndUpdate({phone}, {$inc:{balanceAmount:balance}});
         await Employee.findOneAndUpdate({phone:employeePhone},{$inc:{saleTillDate:totalAmount}});
 
-        let bill=await SaleBill.create({employeeName, phone, totalAmount, products, paid,discount:discountAmount, balance});
+        let bill=await SaleBill.create({employeeName, phone, totalAmount, products, paid,discount:discountAmount, balance, isPrinted, blobURI});
         bill=await SaleBill.findById(bill.id).populate({path:"products.product",select:"-quantity"});
     
         res.status(200).json(bill);
@@ -78,4 +82,31 @@ const getAllBills=expressAsyncHandler(async(req,res)=>{
     res.status(400).json("Unauthorized");
 })
 
-export {deleteSaleBill, createSale, getAllBills};
+const showPrintQueue=expressAsyncHandler(async(req,res)=>{
+    const bills=await SaleBill.find({isPrinted:false});
+    if(req.user.isAdmin)
+    res.status(200).json(bills);
+    else
+    res.status(400).json("Unauthorized");
+})
+
+const updatePrintQueue=expressAsyncHandler(async(req,res)=>{
+    const id=req.params.id;
+    if(req.user.isAdmin)
+    {const bill=await SaleBill.findByIdAndUpdate(id,{isPrinted:true,blobURI:null});
+    res.status(200).json(bill);
+    }else
+    res.status(400).json("Unauthorized");
+})
+
+const addToPrintQueue=expressAsyncHandler(async(req,res)=>{
+    const id=req.params.id;
+    const url=req.body.url;
+    console.log(url)
+    if(!req.user.isAdmin)
+    {const bill=await SaleBill.findByIdAndUpdate(id,{isPrinted:false,blobURI:url});
+    res.status(200).json(bill);
+    }
+})
+
+export {deleteSaleBill, createSale, getAllBills, showPrintQueue, updatePrintQueue, addToPrintQueue};

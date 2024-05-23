@@ -1,13 +1,27 @@
 const apiURL = "http://localhost:5001";
 const inventoryUrl = `${apiURL}/api/stock/`;
 const saleUrl=`${apiURL}/api/sale/create`;
+const printUrl=`${apiURL}/api/sale/print/new/`;
 const customerUrl=`${apiURL}/api/customer/`;
 const storedToken = localStorage.getItem('accessToken');
 if(!storedToken)
 window.location.href="../index.html"
 const token=JSON.parse(storedToken).token;
+const isAdmin=JSON.parse(storedToken).isAdmin;
 
-
+function sendToPrint(url,id)
+{
+  fetch(printUrl+`${id}`,{
+    method:"PATCH",
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+  },
+  body:JSON.stringify({
+    url:url
+  })
+  }).then(res=>res.json()).then(data=>console.log(data))
+}
 function getProduct(){
   const quantity=document.querySelector(".quantity").value;
   const barcode=document.querySelector(".barcode").value;
@@ -93,7 +107,7 @@ function createPerforma()
   const percentage=document.querySelector(".discount").value;
   const totalAmount=(document.querySelector(".totalAmount")).innerHTML;
   const requestBody=JSON.stringify({
-    customerName, phone, paid, Products, discount:percentage
+    customerName, phone, paid, Products, discount:percentage,isAdmin
   })
 
   fetch(saleUrl,{
@@ -185,11 +199,13 @@ doc.addImage("https://cdn-icons-png.flaticon.com/512/3862/3862504.png", "JPEG", 
 
 var pdfData = doc.output('blob');
 
-  var url = URL.createObjectURL(pdfData);
-  window.open(url);
+var url = URL.createObjectURL(pdfData);
+if(isAdmin)
+{window.open(url);}
+else
+{sendToPrint(url,data._id);}
 
-
-// setTimeout(()=>{window.location.reload()},3000)
+setTimeout(()=>{window.location.reload()},3000)
 }
 );
 }
