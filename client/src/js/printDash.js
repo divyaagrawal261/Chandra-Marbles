@@ -1,6 +1,6 @@
 const storedToken = localStorage.getItem('accessToken');
 const token = JSON.parse(storedToken).token;
-const printUrl = "http://localhost:5001/api/sale/print/";
+const printUrl = "https://chandra-marbles.onrender.com/api/sale/print/";
 
 function removeFromPrint(id) {
     fetch(printUrl + `${id}`, {

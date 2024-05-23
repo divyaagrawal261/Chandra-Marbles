@@ -4,7 +4,7 @@ window.location.href="../index.html"
 const isAdmin=JSON.parse(storedToken).isAdmin;
 if(!isAdmin)
 window.location.href="../public/error.html"
-const apiURL = "http://localhost:5001";
+const apiURL = "https://chandra-marbles.onrender.com";
 const employeeURL= `${apiURL}/api/employee/`;
 const token=JSON.parse(storedToken).token;
 
