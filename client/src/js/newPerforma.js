@@ -198,12 +198,14 @@ doc.addImage("https://cdn-icons-png.flaticon.com/512/3862/3862504.png", "JPEG", 
 // doc.save('order-summary.pdf');
 
 var pdfData = doc.output('blob');
+const pdfDataUri = doc.output('datauristring');
+const base64String = pdfDataUri.split(',')[1];
 
 var url = URL.createObjectURL(pdfData);
 if(isAdmin)
 {window.open(url);}
 else
-{sendToPrint(url,data._id);}
+{sendToPrint(base64String,data._id);}
 
 setTimeout(()=>{window.location.reload()},3000)
 }
